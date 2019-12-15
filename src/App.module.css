@@ -1,0 +1,22 @@
+h3 {
+    margin: 0;
+}
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.clear::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.tile {
+    margin-bottom: 10px;
+    height: 100px;
+    float: left;
+}
+.info {
+    margin-left: 10px;
+    float: left;
+}
