@@ -868,6 +868,55 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bit/ramda.ramda.internal._curry1@0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.internal._curry1/-/ramda.ramda.internal._curry1-0.26.1.tgz#c115be3440ae3a3bd63bbde9a176c76df0408012"
+  integrity sha1-wRW+NECuOjvWO73poXbHbfBAgBI=
+  dependencies:
+    "@bit/ramda.ramda.internal._is-placeholder" "0.26.1"
+
+"@bit/ramda.ramda.internal._has@0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.internal._has/-/ramda.ramda.internal._has-0.26.1.tgz#157d8427bda69a9488e397b8c57f16fa3723d887"
+  integrity sha1-FX2EJ72mmpSI45e4xX8W+jcj2Ic=
+
+"@bit/ramda.ramda.internal._is-arguments@0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.internal._is-arguments/-/ramda.ramda.internal._is-arguments-0.26.1.tgz#33d3031807e3b3386e73a060ece982e3d1d49c1e"
+  integrity sha1-M9MDGAfjszhuc6Bg7OmC49HUnB4=
+  dependencies:
+    "@bit/ramda.ramda.internal._has" "0.26.1"
+
+"@bit/ramda.ramda.internal._is-placeholder@0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.internal._is-placeholder/-/ramda.ramda.internal._is-placeholder-0.26.1.tgz#7b9d90316e7b553cd1138601e498cf0cf2bed6a9"
+  integrity sha1-e52QMW57VTzRE4YB5JjPDPK+1qk=
+
+"@bit/ramda.ramda.keys@0.26.1", "@bit/ramda.ramda.keys@^0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.keys/-/ramda.ramda.keys-0.26.1.tgz#e100b3872e4b2949e38220e70b53b4a473175487"
+  integrity sha1-4QCzhy5LKUnjgiDnC1O0pHMXVIc=
+  dependencies:
+    "@bit/ramda.ramda.internal._curry1" "0.26.1"
+    "@bit/ramda.ramda.internal._has" "0.26.1"
+    "@bit/ramda.ramda.internal._is-arguments" "0.26.1"
+
+"@bit/ramda.ramda.to-pairs@^0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.to-pairs/-/ramda.ramda.to-pairs-0.26.1.tgz#d6346c3aa9e06be476da6b3bd4b7e5e0caf05f15"
+  integrity sha1-1jRsOqnga+R22ms71Lfl4MrwXxU=
+  dependencies:
+    "@bit/ramda.ramda.internal._curry1" "0.26.1"
+    "@bit/ramda.ramda.internal._has" "0.26.1"
+
+"@bit/ramda.ramda.values@^0.26.1":
+  version "0.26.1"
+  resolved "https://node.bit.dev/ramda.ramda.values/-/ramda.ramda.values-0.26.1.tgz#2518269a37a1102f9363a2d802c6c009032ed43c"
+  integrity sha1-JRgmmjehEC+TY6LYAsbACQMu1Dw=
+  dependencies:
+    "@bit/ramda.ramda.internal._curry1" "0.26.1"
+    "@bit/ramda.ramda.keys" "0.26.1"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/ramda.ramda.keys": "^0.26.1",
+    "@bit/ramda.ramda.to-pairs": "^0.26.1",
+    "@bit/ramda.ramda.values": "^0.26.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

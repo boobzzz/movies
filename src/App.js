@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 
+import values from "@bit/ramda.ramda.values";
+import toPairs from '@bit/ramda.ramda.to-pairs';
+
 import MoviesList from './components/MoviesList/MoviesList';
+import Button from './components/Button/Button';
 import './App.module.css';
 
+const urls = {
+    'Trending Now': 'https://api.themoviedb.org/3/discover/movie',
+    'Sci-Fi Hits': 'https://api.themoviedb.org/3/genre/878/movies',
+    'Comedy Hits': 'https://api.themoviedb.org/3/genre/35/movies',
+}
+const api_key = 'cd53ee965e63158d218cc6de9f207988'
 const perPage = 20;
 
 export default class App extends Component {
@@ -11,22 +21,22 @@ export default class App extends Component {
         movies: []
     }
 
-    componentDidMount = async () => {
-        this.loadMore()
-    }
+    // componentDidMount = async () => {
+    //     await values(urls).map(url => this.loadMore(url))
+    // }
 
-    loadMore = async () => {
+    loadMore = async (url) => {
         let { movies } = this.state;
         let page = Math.floor(movies.length / perPage) + 1;
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=cd53ee965e63158d218cc6de9f207988&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`;
-
+        let path = url + `?api_key=${api_key}&page=${page}`;
         this.setState({
             isLoading: true
         })
 
-        let response = await fetch(url);
+        let response = await fetch(path);
         let json = await response.json();
         let data = json.results;
+        console.log(data);
 
         this.setState({
             isLoading: false,
@@ -39,12 +49,18 @@ export default class App extends Component {
 
         return (
             <div>
-                {isLoading
-                ? <div>Loading...</div>
-                : <MoviesList movies={movies} />}
-                <button type="button" onClick={this.loadMore}>
-                    Next {perPage}
-                </button>
+                {/* isLoading
+                ? <div>Loading...</div> */}
+                {toPairs(urls).map(item =>
+                    <section>
+                        <h2>{item[0]}</h2>
+                        <MoviesList movies={movies} />
+                        <Button
+                            type="button"
+                            itemsPerPage={perPage}
+                            clicked={() => this.loadMore(item[1])} />
+                    </section>
+                )}
             </div>
         )
     }
