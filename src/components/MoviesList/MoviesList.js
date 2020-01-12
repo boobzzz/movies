@@ -1,7 +1,7 @@
-import React , { Component } from 'react';
-import fetchJSON from '../../lib/api.js';
-import Button from '../Button/Button';
-import classes from './MoviesList.module.css';
+import React , { Component } from "react";
+import fetchJSON from "../../lib/api.js";
+import Button from "../Button/Button";
+import classes from "./MoviesList.module.css";
 
 const options = {
     headers: {
