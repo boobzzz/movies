@@ -1,10 +1,15 @@
 import React from 'react';
 
+import classes from './Button.module.css';
+
 const Button = (props) => {
+    const { clicked, loading, itemsPerPage } = props;
     return (
-        <button type="button" onClick={props.clicked}>
-            Next {props.itemsPerPage}
-        </button>
+        <div className={classes.NextBtn}>
+            <a href="#" onClick={clicked}>
+                {!loading ? `load next ${itemsPerPage}` : 'Loading...'}
+            </a>
+        </div>
     )
 }
 

@@ -1,25 +1,26 @@
-import React, { Component } from "react";
-import values from "@bit/ramda.ramda.values";
-import MoviesList from "./components/MoviesList/MoviesList";
-import "./App.module.css";
+import React from 'react';
+// import values from '@bit/ramda.ramda.values';
 
-const urls = {
-    trendingNow: ["Trending Now", "https://api.themoviedb.org/3/discover/movie"],
-    scifiHits: ["Sci-Fi Hits", "https://api.themoviedb.org/3/genre/878/movies"],
-    comedyHits: ["Comedy Hits", "https://api.themoviedb.org/3/genre/35/movies"],
-}
+import Header from './components/Header/Header';
+import Filters from './components/Filters/Filters';
+import MoviesList from './components/MoviesList/MoviesList';
+import Footer from './components/Footer/Footer';
 
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-                {values(urls).map(item =>
-                    <section>
-                        <h2>{item[0]}</h2>
-                        <MoviesList url={item[1]} />
+export default function App() {
+    return (
+        <div>
+            <Header />
+            <div className="container-xl">
+                <main className="row">
+                    <aside className="col-3">
+                        <Filters />
+                    </aside>
+                    <section className="col-9">
+                        <MoviesList />
                     </section>
-                )}
+                </main>
             </div>
-        )
-    }
+            <Footer />
+        </div>
+    )
 }

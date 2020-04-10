@@ -1,0 +1,14 @@
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+// bootstrap overrides
+.navbar {
+    padding: 20px 40px;
+}
+.navbar-brand,
+.nav-link {
+    line-height: 20px;
+}

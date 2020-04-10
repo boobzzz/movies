@@ -1,0 +1,21 @@
+.NextBtn {
+    margin-bottom: 20px;
+    text-align: center;
+}
+    .NextBtn a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        line-height: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
+        background: #fff;
+        border: 1px inset rgba(3, 37, 65, 0.5);
+        color: #032541;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .NextBtn a:hover {
+        box-shadow: 0px 6px 12px 4px rgba(3, 37, 65, 0.5);
+    }

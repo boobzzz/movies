@@ -1,70 +1,75 @@
-import React , { Component } from "react";
-import fetchJSON from "../../lib/api.js";
-import Button from "../Button/Button";
-import classes from "./MoviesList.module.css";
+import React , { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import fetchJSON from '../../utils/api.js';
 
+import MovieCard from './MovieCard/MovieCard';
+import Button from '../Button/Button';
+
+const url = 'https://api.themoviedb.org/3/discover/movie';
 const options = {
     headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDUzZWU5NjVlNjMxNThkMjE4Y2M2ZGU5ZjIwNzk4OCIsInN1YiI6IjVkZjY2MjBmMGQxZTdmMDAxNTcxZjEyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EmR74K8s26d5IUQwwyDtxY8DZS6WLoLbeB8rvZH6mGc",
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDUzZWU5NjVlNjMxNThkMjE4Y2M2ZGU5ZjIwNzk4OCIsInN1YiI6IjVkZjY2MjBmMGQxZTdmMDAxNTcxZjEyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EmR74K8s26d5IUQwwyDtxY8DZS6WLoLbeB8rvZH6mGc',
+        // 'Authorization': 'Bearer cd53ee965e63158d218cc6de9f207988',
     }
 }
 const perPage = 20;
 
-export default class MoviesList extends Component {
-    state = {
-        isLoading: false,
-        movies: []
-    }
+const MoviesList = (props) => {
+    const [ loading, setLoading ] = useState(false);
+    const [ movies, setMovies ] = useState([]);
 
-    componentDidMount = async () => {
-        await this.loadMore(this.props.url)
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            await loadMore()
+        }
+        fetchData()
+    }, [])
 
-    loadMore = async () => {
-        let { movies } = this.state;
+    const loadMore = async () => {
         let page = Math.floor(movies.length / perPage) + 1;
-        let path = this.props.url + `?page=${page}`;
+        let path = url + `?page=${page}`;
+        setLoading(true)
 
-        this.setState({
-            isLoading: true
-        })
+        const data = await fetchJSON(path, options)
 
-        let data = await fetchJSON(path, options)
-
-        this.setState({
-            isLoading: false,
-            movies: [...movies, ...data.body.results]
-        })
+        setLoading(false)
+        setMovies([...movies, ...data.body.results])
     }
 
-    render() {
-        let { isLoading, movies } = this.state;
-
-        return (
-            isLoading
-            ? <div>Loading...</div>
-            : <div>
+    return (
+        loading
+        ? <div>Loading...</div>
+        : <div>
+            <div className="row">
                 {movies.map(movie =>
-                    <div id={movie.id} className={classes.clear}>
-                        <img
-                            alt=""
-                            className={classes.tile}
-                            src={"http://image.tmdb.org/t/p/original/" + movie.backdrop_path}/>
-                        <div className={classes.info}>
-                            <h3>{movie.title}</h3>
-                            <p>Score: {movie.vote_average} / 10</p>
-                            <details>
-                                <summary>Overview</summary>
-                                {movie.overview}
-                            </details>
-                        </div>
-                    </div>
-                )}
-                <Button
-                    itemsPerPage={this.props.itemsPerPage}
-                    clicked={this.loadMore} />
-                <hr/>
+                    <MovieCard
+                        key={movie.id}
+                        source={"http://image.tmdb.org/t/p/original/" + movie.poster_path}
+                        title={movie.title}
+                        score={movie.vote_average}
+                        overview={movie.overview} />
+                    )}
             </div>
-        )
-    }
+            <Button
+                loading={loading}
+                itemsPerPage={perPage}
+                clicked={loadMore} />
+        </div>
+    )
 }
+export default MoviesList;
+
+// const mapStateToProps = (state) => {
+//     return {
+//         loading: state.movies.isLoading,
+//         movies: state.movies.movies
+//     }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         loadMore: () => dispatch({type: 'FETCH_MOVIES'})
+//     }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
