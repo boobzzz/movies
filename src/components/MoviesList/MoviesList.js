@@ -1,75 +1,71 @@
-import React , { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import fetchJSON from '../../utils/api.js';
+import * as A from '../../store/actions';
+import * as C from '../../constants/constants';
+import queryString from 'query-string';
 
 import MovieCard from './MovieCard/MovieCard';
 import Button from '../Button/Button';
 
-const url = 'https://api.themoviedb.org/3/discover/movie';
-const options = {
-    headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZDUzZWU5NjVlNjMxNThkMjE4Y2M2ZGU5ZjIwNzk4OCIsInN1YiI6IjVkZjY2MjBmMGQxZTdmMDAxNTcxZjEyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EmR74K8s26d5IUQwwyDtxY8DZS6WLoLbeB8rvZH6mGc',
-        // 'Authorization': 'Bearer cd53ee965e63158d218cc6de9f207988',
-    }
-}
-const perPage = 20;
+let moviesList = []
 
 const MoviesList = (props) => {
-    const [ loading, setLoading ] = useState(false);
-    const [ movies, setMovies ] = useState([]);
+    const { loading, movies, filters, loadMovies, switchPage } = props
+    let queryParams = filters
+    let url = `${C.API_ENDPOINT}discover/movie?${
+        queryString.stringify(queryParams)
+    }`
+
+    const loadMore = () => {
+        switchPage()
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            await loadMore()
-        }
-        fetchData()
-    }, [])
+        loadMovies(url, C.OPTIONS)
+    }, [loadMovies, url])
 
-    const loadMore = async () => {
-        let page = Math.floor(movies.length / perPage) + 1;
-        let path = url + `?page=${page}`;
-        setLoading(true)
-
-        const data = await fetchJSON(path, options)
-
-        setLoading(false)
-        setMovies([...movies, ...data.body.results])
-    }
+    if (filters.page === 1) moviesList = []
+    moviesList = [...moviesList, ...movies].reduce((acc, item) =>
+        acc.includes(item) ? acc : [...acc, item]
+    , [])
 
     return (
         loading
         ? <div>Loading...</div>
         : <div>
             <div className="row">
-                {movies.map(movie =>
+                {moviesList.map(movie =>
                     <MovieCard
                         key={movie.id}
-                        source={"http://image.tmdb.org/t/p/original/" + movie.poster_path}
+                        source={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}
                         title={movie.title}
                         score={movie.vote_average}
                         overview={movie.overview} />
-                    )}
+                )}
             </div>
-            <Button
-                loading={loading}
-                itemsPerPage={perPage}
-                clicked={loadMore} />
+            <Button loading={loading} clicked={loadMore} />
         </div>
     )
 }
-export default MoviesList;
 
-// const mapStateToProps = (state) => {
-//     return {
-//         loading: state.movies.isLoading,
-//         movies: state.movies.movies
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         loadMore: () => dispatch({type: 'FETCH_MOVIES'})
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        loading: state.fetch.isLoading,
+        movies: state.fetch.movies,
+        filters: {
+            page: state.filters.filters.page,
+            sort_by: state.filters.filters.sort_by,
+            primary_release_year: state.filters.filters.primary_release_year,
+            with_genres: state.filters.filters.with_genres,
+        }
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadMovies: (url, options) => dispatch(A.getApiData(url, options)),
+        switchPage: () => dispatch({type: 'SWITCH_PAGE'})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

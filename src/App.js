@@ -1,5 +1,4 @@
 import React from 'react';
-// import values from '@bit/ramda.ramda.values';
 
 import Header from './components/Header/Header';
 import Filters from './components/Filters/Filters';

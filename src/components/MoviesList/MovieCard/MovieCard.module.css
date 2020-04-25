@@ -4,7 +4,7 @@
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .MovieCard:hover {
-    box-shadow: 0px 6px 12px 4px rgba(3, 37, 65, 0.5);
+    box-shadow: 0px 6px 12px 4px rgba(3, 37, 65, 0.6);
 }
 .Poster {
     flex: 0 0 50%;
@@ -16,23 +16,19 @@
     flex: 0 0 50%;
     display: flex;
     flex-flow: column nowrap;
-    padding: 15px;
-    border: 1px inset rgba(3, 37, 65, 0.5);
-    /* border-top: 1px inset rgba(3, 37, 65, 0.5);
-    border-right: 1px inset rgba(3, 37, 65, 0.5);
-    border-bottom: 1px inset rgba(3, 37, 65, 0.5); */
+    padding: 20px;
+    border: 1px solid rgba(3, 37, 65, 0.4);
 }
 .Icons {
-    flex: 0 0 30%;
+    flex: 0 0 20%;
 }
 .Title {
-    flex: 0 0 58%;
+    flex: 0 0 68%;
 }
     .Title h6 {
         margin: 0;
         font-family: 'Permanent Marker', cursive;
         font-size: 20px;
-        /* color: #117a8b; */
         color: #bd2130;
     }
 .DetailsBtn {
@@ -44,17 +40,16 @@
         width: 100%;
         height: 100%;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 18px;
         text-transform: uppercase;
         line-height: 32px;
         text-decoration: none;
         background: #fff;
-        border: 1px solid rgba(3, 37, 65, 0.5);
+        border: 1px solid rgba(3, 37, 65, 0.2);
         color: #032541;
         transition: all 0.3s;
     }
     .DetailsBtn a:hover {
-        /* background: #117a8b; */
         background: #bd2130;
         color: #fff;
     }

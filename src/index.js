@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import * as R from './store/reducers';
 
 import './index.scss';
 import App from './App';
 
-// const reducers = combineReducers({
-//     movies: R.moviesReducer,
-// })
-// const store = createStore(reducers);
+const reducers = combineReducers({
+    fetch: R.fetchReducer,
+    filters: R.filtersReducer
+})
+const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-    // <Provider store={store}>
-    //     <App />
-    // </Provider>
-    <App />
+    <Provider store={store}>
+        <App />
+    </Provider>
 , document.getElementById('root'));
