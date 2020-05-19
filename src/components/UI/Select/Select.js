@@ -1,14 +1,15 @@
 import React from 'react';
 
-import '../Filters.module.css';
-
 const Select = (props) => {
-    const { name, options, changed } = props;
+    const { name, options, changed, selectValue } = props;
 
     return (
         <label>{name}
-            <select name={name} onChange={changed} defaultValue="select">
-                <option value="select" disabled>Select option...</option>
+            <select
+                name={name}
+                onChange={changed}
+                value={selectValue}>
+                <option value="default" disabled>Select option...</option>
                 {options.map(option =>
                     <option key={option.value} value={option.value}>
                         {option.name}

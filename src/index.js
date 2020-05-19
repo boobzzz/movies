@@ -9,9 +9,14 @@ import * as R from './store/reducers';
 import './index.scss';
 import App from './App';
 
+// if (process.env.NODE_ENV !== 'production') {
+//   const {whyDidYouUpdate} = require('why-did-you-update');
+//   whyDidYouUpdate(React);
+// }
+
 const reducers = combineReducers({
     fetch: R.fetchReducer,
-    filters: R.filtersReducer
+    filters: R.filtersReducer,
 })
 const store = createStore(reducers, applyMiddleware(thunk));
 

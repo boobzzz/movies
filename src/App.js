@@ -1,25 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Filters from './components/Filters/Filters';
-import MoviesList from './components/MoviesList/MoviesList';
+import Main from './components/Main/Main';
+import MovieDetails from './components/Movies/Movie/Details/MovieDetails';
 import Footer from './components/Footer/Footer';
+import ButtonToTop from './components/UI/ButtonToTop/ButtonToTop';
 
 export default function App() {
     return (
         <div>
             <Header />
-            <div className="container-xl">
-                <main className="row">
-                    <aside className="col-3">
-                        <Filters />
-                    </aside>
-                    <section className="col-9">
-                        <MoviesList />
-                    </section>
-                </main>
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={Main} />
+                    <Route path="/movie/:id" component={MovieDetails} />
+                </Switch>
+            </Router>
             <Footer />
+            <ButtonToTop />
         </div>
     )
 }

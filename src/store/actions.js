@@ -1,14 +1,31 @@
-import * as R from 'ramda';
 import fetchJSON from '../utils/api.js';
 
-export const getApiData = (url, options) => async (dispatch) => {
+const fetchApiData = (url, options, type) => async (dispatch) => {
     const response = await fetchJSON(url, options)
     const data = response.body
-    const dataHas = R.has(R.__, data)
-    let actionType = dataHas('genres') ? 'FETCH_GENRES' : 'FETCH_MOVIES'
 
     dispatch({
-        type: actionType,
+        type: type,
         payload: data
     })
+}
+
+export const fetchMovies = (url, options) => {
+    return fetchApiData(url, options, 'FETCH_MOVIES')
+}
+
+export const fetchGenres = (url, options) => {
+    return fetchApiData(url, options, 'FETCH_GENRES')
+}
+
+export const fetchMovieDetails = (url, options) => {
+    return fetchApiData(url, options, 'FETCH_DETAILS')
+}
+
+export const fetchMovieVideos = (url, options) => {
+    return fetchApiData(url, options, 'FETCH_VIDEOS')
+}
+
+export const fetchMovieCast = (url, options) => {
+    return fetchApiData(url, options, 'FETCH_CAST')
 }

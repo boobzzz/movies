@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getGenresSelector } from '../../../store/reducers';
 
+import Checkbox from '../../UI/Checkbox/Checkbox';
 import classes from './Genres.module.css';
 
 const Genres = (props) => {
-    const { genres, changed, cleared } = props;
+    const { genres, checkGenres, cleared } = props;
     const [ isChecked, setIsChecked ] = useState([])
-    console.log(cleared);
+
     useEffect(() => {
         setIsChecked(() => genres.map(genre => (
                 {id: genre.id + '', name: genre.name, checked: false}
@@ -15,10 +18,11 @@ const Genres = (props) => {
 
     const handleCheckbox = (e) => {
         let target = e.target
-        changed(target)
-
+        checkGenres(target)
         setIsChecked(() => isChecked.map(item =>
-            item.id === target.id ? {...item, checked: !item.checked} : item
+            item.id === target.id
+            ? {...item, checked: !item.checked}
+            : item
         ))
     }
 
@@ -26,17 +30,30 @@ const Genres = (props) => {
         <ul className={classes.Genres}>Choose genre:
             {isChecked.map(genre =>
                 <li key={genre.id}>
-                    <input
-                        type="checkbox"
+                    <Checkbox
                         id={genre.id}
-                        onChange={handleCheckbox}
-                        checked={genre.checked}/>
-                    <span className={classes.CheckboxCustom}></span>
-                    <label htmlFor={genre.id}>{genre.name}</label>
+                        name={genre.name}
+                        changed={handleCheckbox}
+                        checked={genre.checked} />
                 </li>
             )}
         </ul>
     )
 }
 
-export default Genres;
+const mapStateToProps = (state) => {
+    return {
+        genres: getGenresSelector(state),
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkGenres: (targetItem) => dispatch({
+            type: 'CHECK_GENRES',
+            payload: targetItem
+        })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Genres);

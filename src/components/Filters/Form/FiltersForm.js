@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as A from '../../../store/actions';
+import * as C from '../../../constants/constants';
+
+import Button from '../../UI/Button/Button';
+import Selects from '../Selects/Selects';
+import Genres from '../Genres/Genres';
+import classes from './FiltersForm.module.css';
+
+const url = `${C.API_ENDPOINT}/genre/movie/list`
+
+const FiltersForm = (props) => {
+    const { genres, loadGenres, clearFilters } = props
+    const [ filtersCleared, setFiltersCleared ] = useState(false)
+
+    useEffect(() => {
+        loadGenres(url, C.OPTIONS)
+        setFiltersCleared(false)
+    }, [loadGenres, filtersCleared])
+
+    const clearAllFilters = () => {
+        clearFilters()
+        setFiltersCleared(true)
+    }
+
+    return (
+        <form className={classes.FiltersBox}>
+            <Button path="/" title="CLEAR ALL FILTERS" clicked={clearAllFilters} />
+            <Selects cleared={filtersCleared} />
+            <Genres genres={genres} cleared={filtersCleared} />
+        </form>
+    )
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadGenres: (url, options) => dispatch(A.fetchGenres(url, options)),
+        clearFilters: () => dispatch({type: 'CLEAR_FILTERS'})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(FiltersForm);

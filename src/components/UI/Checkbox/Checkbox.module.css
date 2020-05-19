@@ -1,0 +1,51 @@
+.Checkbox {
+    position: relative;
+}
+.Checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.Checkbox label {
+    padding-left: 30px;
+    font-weight: 400;
+    align-items: center;
+    transition: all 0.2s;
+}
+.Checkbox:hover label,
+.Checkbox input:checked~label  {
+    font-weight: 600;
+}
+.Checkbox .CheckboxCustom {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: 1px solid rgba(3, 37, 65, 0.2);
+    transform: translateY(-50%);
+    transition: all 0.2s;
+}
+.Checkbox:hover .CheckboxCustom,
+.Checkbox input:checked+label .CheckboxCustom {
+    box-shadow: inset 0px 0px 0px 4px rgba(189, 33, 48, 1);
+}
+.Checkbox input:checked+label .CheckboxCustom{
+    border: 1px solid rgba(3, 37, 65, 0.8);
+    box-shadow: none;
+}
+.Checkbox input+label .CheckboxCustom::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.2s;
+}
+.Checkbox input:checked+label .CheckboxCustom::after {
+    background: #bd2130;
+    transform: translate(-50%, -50%) scale(1);
+}

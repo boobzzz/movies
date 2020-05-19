@@ -1,0 +1,28 @@
+.ActorsBox {
+    padding: 20px 0 50px 0;
+}
+.Actor {
+    position: relative;
+    padding: 0;
+}
+    .Actor img {
+        height: 388px;
+    }
+.ActorInfo {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background: rgba(3, 37, 65, 0.5);
+}
+    .ActorInfo span {
+        display: inline-block;
+        width: 100%;
+        font-weight: 600;
+        font-size: 26px;
+        color: #fff;
+    }
+    .ActorInfo span+span {
+        font-size: 18px;
+    }

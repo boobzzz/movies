@@ -1,0 +1,11 @@
+table {
+    margin: 20px 0 50px 0;
+}
+.TableRow {
+    border-bottom: 1px solid #dee2e6;
+}
+    .TableRow th {
+        width: 235px;
+        padding-left: 16px;
+        vertical-align: baseline;
+    }

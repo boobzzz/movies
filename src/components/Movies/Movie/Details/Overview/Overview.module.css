@@ -1,0 +1,32 @@
+.Desc {
+    display: flex;
+}
+.Poster {
+    flex: 0 0 34%;
+}
+    .Poster img {
+        height: 500px;
+    }
+.Overview {
+    flex: 0 0 66%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+    .Overview h2 {
+        font-weight: 600;
+        font-size: 40px;
+        color: #bd2130;
+    }
+    .Overview .Icons {
+        padding: 30px;
+        border: 1px solid #fff;
+    }
+    .Overview p {
+        margin: 0;
+        font-weight: 600;
+        font-size: 20px;
+        text-align: justify;
+        color: #032541;
+    }

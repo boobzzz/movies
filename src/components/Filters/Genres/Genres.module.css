@@ -1,49 +1,5 @@
 .Genres {
-    margin-bottom: 31px;
+    margin-top: 20px;
+    margin-bottom: 58px;
     font-weight: 600;
 }
-    .Genres li {
-        position: relative;
-    }
-    .Genres input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-    .Genres label {
-        padding-left: 30px;
-        font-weight: 400;
-        align-items: center;
-    }
-    .Genres li:hover label,
-    .Genres input:checked~label  {
-        font-weight: 600;
-    }
-    .Genres .CheckboxCustom {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        width: 24px;
-        height: 24px;
-        background: transparent;
-        border: 1px solid rgba(3, 37, 65, 0.2);
-        transform: translateY(-50%);
-    }
-    .Genres li:hover .CheckboxCustom,
-    .Genres input:checked~.CheckboxCustom {
-        border: 1px solid rgba(3, 37, 65, 0.8);
-    }
-    .Genres input~.CheckboxCustom::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 16px;
-        height: 16px;
-        transform: translate(-50%, -50%) scale(0);
-        transition: all 0.2s;
-    }
-    .Genres input:checked~.CheckboxCustom::after {
-        background: #bd2130;
-        transform: translate(-50%, -50%) scale(1);
-    }

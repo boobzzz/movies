@@ -1,12 +1,13 @@
 import React from 'react';
 
+import logo from '../../assets/logo/footer-logo.svg';
 import './Footer.module.css';
 
 const Footer = (props) => {
     return (
         <footer>
-            <a href="1">
-                <img src="images/logo/footer-logo.svg" alt=""/>
+            <a href="/">
+                <img src={logo} alt=""/>
             </a>
         </footer>
     )

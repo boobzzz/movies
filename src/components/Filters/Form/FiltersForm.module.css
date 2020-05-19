@@ -1,0 +1,18 @@
+.FiltersBox {
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px inset rgba(3, 37, 65, 0.4);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.FiltersBox:hover {
+    box-shadow: 0px 6px 12px 4px rgba(3, 37, 65, 0.6);
+}
+    .FiltersBox>div {
+        margin-bottom: 30px;
+    }
+    .FiltersBox a {
+        border: 1px solid rgba(3, 37, 65, 0.2);
+    }
