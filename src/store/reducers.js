@@ -14,7 +14,7 @@ const initialState = {
     movies: [],
     details: {},
     videos: [],
-    cast: []
+    cast: [],
 }
 let showMovies = []
 

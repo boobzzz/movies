@@ -1,19 +1,18 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import FiltersForm from '../Filters/Form/FiltersForm';
-import MoviesList from '../Movies/List/MoviesList';
+import MainList from './MainRoutes/MainList/MainList';
+import MainDetails from './MainRoutes/MainDetails/MainDetails';
 
 const Main = (props) => {
     return (
-        <main className="container-xl">
-            <div className="row">
-                <aside className="col-3">
-                    <FiltersForm />
-                </aside>
-                <section className="col-9">
-                    <MoviesList />
-                </section>
-            </div>
+        <main>
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={MainList} />
+                    <Route path="/movie/:id" component={MainDetails} />
+                </Switch>
+            </Router>
         </main>
     )
 }

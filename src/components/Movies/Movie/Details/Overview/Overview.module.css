@@ -14,19 +14,23 @@
     justify-content: space-between;
     padding: 0 20px;
 }
+    .Overview span {
+        display: inline-block;
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #fff;
+    }
     .Overview h2 {
+        display: inline-block;
+        width: 100%;
         font-weight: 600;
         font-size: 40px;
         color: #bd2130;
     }
-    .Overview .Icons {
-        padding: 30px;
-        border: 1px solid #fff;
-    }
     .Overview p {
         margin: 0;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 18px;
         text-align: justify;
         color: #032541;
     }

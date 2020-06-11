@@ -13,8 +13,10 @@ const Overview = (props) => {
                 <img src={`${C.GET_IMAGE}${details.poster_path}`} alt=""/>
             </div>
             <div className={classes.Overview}>
-                <h2>{details.title}</h2>
-                <span className={classes.Icons}>UI icons</span>
+                <div>
+                    <span>UI icons</span>
+                    <h2>{details.title}</h2>
+                </div>
                 <p>{details.overview}</p>
             </div>
         </div>
