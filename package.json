@@ -28,7 +28,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "why-did-you-update": "^1.0.8",
-    "yarn": "^1.21.1"
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",
