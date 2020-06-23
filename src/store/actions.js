@@ -1,4 +1,4 @@
-import fetchJSON from '../utils/api.js';
+import fetchJSON from '../utils/api/api.js';
 
 const fetchApiData = (url, options, type) => async (dispatch) => {
     const response = await fetchJSON(url, options)

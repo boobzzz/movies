@@ -1,0 +1,2 @@
+export const FETCH_GENRES = 'FETCH_GENRES'
+export const CLEAR_FILTERS = 'CLEAR_FILTERS'

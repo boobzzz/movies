@@ -7,16 +7,15 @@ const initialState = {
         page: 1,
         sort_by: 'popularity.desc',
         primary_release_year: null,
-        with_genres: '',
+        with_genres: ''
     },
-    genres: [],
     genresChecked: {},
+    genres: [],
     movies: [],
     details: {},
     videos: [],
-    cast: [],
+    cast: []
 }
-let showMovies = []
 
 export const fetchReducer = (state = initialState, action) => {
     const { type, payload } = action
@@ -27,28 +26,40 @@ export const fetchReducer = (state = initialState, action) => {
                 genres: [...payload.genres]
             }
         case 'FETCH_MOVIES':
-            state = {...state, isLoading: true}
+            state = {
+                ...state,
+                isLoading: true
+            }
             return {
                 ...state,
                 movies: [...payload.results],
                 isLoading: false
             }
         case 'FETCH_DETAILS':
-            state = {...state, isLoading: true}
+            state = {
+                ...state,
+                isLoading: true
+            }
             return {
                 ...state,
                 details: {...payload},
                 isLoading: false
             }
         case 'FETCH_VIDEOS':
-            state = {...state, isLoading: true}
+            state = {
+                ...state,
+                isLoading: true
+            }
             return {
                 ...state,
                 videos: [...payload.results],
                 isLoading: false
             }
         case 'FETCH_CAST':
-            state = {...state, isLoading: true}
+            state = {
+                ...state,
+                isLoading: true
+            }
             return {
                 ...state,
                 cast: [...payload.cast],
@@ -68,7 +79,7 @@ export const filtersReducer = (state = initialState, action) => {
                 ...state,
                 filters: {
                     ...state.filters,
-                    page: state.filters.page + 1,
+                    page: state.filters.page + 1
                 }
             }
         case 'SORT_BY':
@@ -77,7 +88,7 @@ export const filtersReducer = (state = initialState, action) => {
                 filters: {
                     ...state.filters,
                     page: 1,
-                    sort_by: payload.value,
+                    sort_by: payload.value
                 }
             }
         case 'RELEASE_DATE':
@@ -86,7 +97,7 @@ export const filtersReducer = (state = initialState, action) => {
                 filters: {
                     ...state.filters,
                     page: 1,
-                    primary_release_year: payload.value,
+                    primary_release_year: payload.value
                 }
             }
         case 'CHECK_GENRES':
@@ -102,7 +113,7 @@ export const filtersReducer = (state = initialState, action) => {
                 filters: {
                     ...state.filters,
                     page: 1,
-                    with_genres: R.keys(state.genresChecked).join(','),
+                    with_genres: R.keys(state.genresChecked).join(',')
                 }
             }
         case 'CLEAR_FILTERS':
@@ -113,7 +124,7 @@ export const filtersReducer = (state = initialState, action) => {
                     page: 1,
                     sort_by: 'popularity.desc',
                     primary_release_year: null,
-                    with_genres: '',
+                    with_genres: ''
                 }
             }
         default:
@@ -122,26 +133,19 @@ export const filtersReducer = (state = initialState, action) => {
 }
 
 
-const getFilters = (state) => state.filters.filters
-export const getFiltersSelector = createSelector(getFilters, (filters) => {
-    const { page } = filters
-    if (page === 1) showMovies = []
+export const getFilters = (state) => state.filters.filters
 
-    return filters
-})
-
+let displayMovies = []
 const getMovies = (state) => state.fetch.movies
-export const getMoviesSelector = createSelector(getMovies, (movies) => {
-    showMovies = [...showMovies, ...movies]
+const getPage = (state) => state.filters.filters.page
+export const getMoviesSelector = createSelector(getMovies, getPage, (movies, page) => {
+    if (page === 1) displayMovies = []
+    displayMovies = [...displayMovies, ...movies]
 
-    return R.uniq(showMovies)
+    return R.uniq(displayMovies)
 })
 
-const getGenres = (state) => state.fetch.genres
-export const getGenresSelector = createSelector(getGenres, (genres) => {
-    return genres
-})
-
+export const getGenres = (state) => state.fetch.genres
 export const getDetails = (state) => state.fetch.details
 export const getVideos = (state) => state.fetch.videos
 export const getCast = (state) => state.fetch.cast

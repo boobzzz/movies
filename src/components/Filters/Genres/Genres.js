@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getGenresSelector } from '../../../store/reducers';
+// import { getGenres } from '../../../store/reducers';
+import * as A from './redux/actions';
+import * as S from './redux/selectors';
 
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import classes from './Genres.module.css';
 
 const Genres = (props) => {
-    const { genres, checkGenres, cleared } = props;
+    const { genres, toggleCheck, cleared } = props;
     const [ isChecked, setIsChecked ] = useState([])
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const Genres = (props) => {
 
     const handleCheckbox = (e) => {
         let target = e.target
-        checkGenres(target)
+        toggleCheck(target)
         setIsChecked(() => isChecked.map(item =>
             item.id === target.id
             ? {...item, checked: !item.checked}
@@ -41,18 +43,30 @@ const Genres = (props) => {
     )
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         genres: getGenres(state),
+//     }
+// }
+
 const mapStateToProps = (state) => {
     return {
-        genres: getGenresSelector(state),
+        genres: S.getGenres(state),
     }
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         checkGenres: (targetItem) => dispatch({
+//             type: 'CHECK_GENRES',
+//             payload: targetItem
+//         })
+//     }
+// }
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        checkGenres: (targetItem) => dispatch({
-            type: 'CHECK_GENRES',
-            payload: targetItem
-        })
+        toggleCheck: (targetItem) => dispatch(A.toggleCheck(targetItem))
     }
 }
 

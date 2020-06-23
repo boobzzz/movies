@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { getIsLoading, getDetails, getVideos, getCast } from '../../../../store/reducers';
+// import { getIsLoading, getDetails, getVideos, getCast } from '../../../../store/reducers';
 import { connect } from 'react-redux';
 import { DetailsContext } from '../../../../contexts/DetailsContext';
-import * as A from '../../../../store/actions';
-import * as C from '../../../../constants/constants';
+// import * as A from '../../../../store/actions';
+import * as A from './redux/actions';
+import * as S from './redux/selectors';
+import * as C from '../../../../utils/api/constants';
 
 import Loader from '../../../UI/Loader/Loader';
 import Overview from './Overview/Overview';
@@ -58,12 +60,21 @@ const MovieDetails = (props) => {
     )
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         details: getDetails(state),
+//         videos: getVideos(state),
+//         cast: getCast(state),
+//         loading: getIsLoading(state)
+//     }
+// }
+
 const mapStateToProps = (state) => {
     return {
-        details: getDetails(state),
-        videos: getVideos(state),
-        cast: getCast(state),
-        loading: getIsLoading(state)
+        details: S.getDetails(state),
+        videos: S.getVideos(state),
+        cast: S.getCast(state),
+        loading: S.getIsLoading(state)
     }
 }
 

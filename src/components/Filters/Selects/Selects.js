@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as R from 'ramda';
+import * as T from './redux/types';
+import * as A from './redux/actions';
 
 import Select from '../../UI/Select/Select';
 import './Selects.module.css';
@@ -28,7 +30,7 @@ const optionsReleaseDate = {
 const selects = [optionsSortBy, optionsReleaseDate]
 
 const Selects = (props) => {
-    const { getSelected, cleared } = props;
+    const { getSelects, cleared } = props;
     const [ isSelected, setIsSelected ] = useState([])
 
     useEffect(() => {
@@ -37,7 +39,7 @@ const Selects = (props) => {
 
     const handleSelect = (e) => {
         let target = e.target
-        let action = target.value.length > 4 ? 'SORT_BY' : 'RELEASE_DATE'
+        let action = target.value.length > 4 ? T.SORT_BY : T.RELEASE_DATE
 
         target.value.length > 4
         ? setIsSelected([
@@ -49,7 +51,7 @@ const Selects = (props) => {
             {...isSelected[1], value: target.value}
         ])
 
-        getSelected(action, target)
+        getSelects(action, target)
     }
 
     return (
@@ -64,12 +66,20 @@ const Selects = (props) => {
     )
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getSelects: (actionType, targetItem) => dispatch({
+//             type: actionType,
+//             payload: targetItem,
+//         })
+//     }
+// }
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSelected: (actionType, targetItem) => dispatch({
-            type: actionType,
-            payload: targetItem,
-        })
+        getSelects: (actionType, targetItem) => dispatch(
+            A.getSelects(actionType, targetItem)
+        )
     }
 }
 
