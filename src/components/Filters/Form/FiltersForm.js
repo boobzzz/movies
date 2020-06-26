@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import * as A from '../../../store/actions';
 import * as A from './redux/actions';
 import * as C from '../../../utils/api/constants';
 
@@ -21,8 +20,8 @@ const FiltersForm = (props) => {
     }, [loadGenres, filtersCleared])
 
     const clearAllFilters = () => {
-        clearFilters()
         setFiltersCleared(true)
+        clearFilters()
     }
 
     return (
@@ -33,13 +32,6 @@ const FiltersForm = (props) => {
         </form>
     )
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         loadGenres: (url, options) => dispatch(A.fetchGenres(url, options)),
-//         clearFilters: () => dispatch({type: 'CLEAR_FILTERS'})
-//     }
-// }
 
 const mapDispatchToProps = (dispatch) => {
     return {

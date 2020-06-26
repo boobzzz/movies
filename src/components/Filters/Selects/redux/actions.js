@@ -1,4 +1,4 @@
-export const getSelects = (actionType, targetItem) => ({
+export const getSelects = (actionType, targetValue) => ({
     type: actionType,
-    payload: targetItem,
+    payload: targetValue,
 })

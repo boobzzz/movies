@@ -2,7 +2,6 @@ import * as T from './types';
 
 const initialState = {
     isLoadingMovies: false,
-    page: 1,
     movies: []
 }
 
@@ -18,11 +17,6 @@ const moviesListReducer = (state = initialState, action) => {
                 ...state,
                 movies: [...payload.results],
                 isLoadingMovies: false
-            }
-        case T.SWITCH_PAGE:
-            return {
-                ...state,
-                page: state.page + 1
             }
         default:
             return state

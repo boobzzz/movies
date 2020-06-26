@@ -30,7 +30,7 @@ const optionsReleaseDate = {
 const selects = [optionsSortBy, optionsReleaseDate]
 
 const Selects = (props) => {
-    const { getSelects, cleared } = props;
+    const { getSelects, cleared } = props
     const [ isSelected, setIsSelected ] = useState([])
 
     useEffect(() => {
@@ -38,17 +38,17 @@ const Selects = (props) => {
     }, [cleared])
 
     const handleSelect = (e) => {
-        let target = e.target
-        let action = target.value.length > 4 ? T.SORT_BY : T.RELEASE_DATE
+        let target = e.target.value
+        let action = target.length > 4 ? T.SORT_BY : T.RELEASE_DATE
 
-        target.value.length > 4
+        target.length > 4
         ? setIsSelected([
-            {...isSelected[0], value: target.value},
+            {...isSelected[0], value: target},
             {...isSelected[1]}
         ])
         : setIsSelected([
             {...isSelected[0]},
-            {...isSelected[1], value: target.value}
+            {...isSelected[1], value: target}
         ])
 
         getSelects(action, target)
@@ -66,19 +66,10 @@ const Selects = (props) => {
     )
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         getSelects: (actionType, targetItem) => dispatch({
-//             type: actionType,
-//             payload: targetItem,
-//         })
-//     }
-// }
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSelects: (actionType, targetItem) => dispatch(
-            A.getSelects(actionType, targetItem)
+        getSelects: (actionType, targetValue) => dispatch(
+            A.getSelects(actionType, targetValue)
         )
     }
 }

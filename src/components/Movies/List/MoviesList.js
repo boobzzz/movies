@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import { getFilters, getMoviesSelector, getIsLoading } from '../../../store/reducers';
-// import * as A from '../../../store/actions';
 import * as A from './redux/actions';
 import * as S from './redux/selectors';
 import * as C from '../../../utils/api/constants';
@@ -15,14 +13,15 @@ import classes from './MoviesList.module.css';
 
 const MoviesList = (props) => {
     const { filters, movies, loading, loadMovies, switchPage } = props
-    let queryParams = {...filters}
+    let queryParams = filters
     let url = `${C.API_ENDPOINT}/discover/movie?${
         queryString.stringify(queryParams)
     }`
     const options = C.OPTIONS
 
     const loadMore = () => {
-        switchPage()
+        let { page } = filters
+        switchPage(page)
     }
 
     useEffect(() => {
@@ -52,14 +51,6 @@ const MoviesList = (props) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         filters: getFilters(state),
-//         movies: getMoviesSelector(state),
-//         loading: getIsLoading(state),
-//     }
-// }
-
 const mapStateToProps = (state) => {
     return {
         filters: S.getFiltersSelector(state),
@@ -68,17 +59,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         loadMovies: (url, options) => dispatch(A.fetchMovies(url, options)),
-//         switchPage: () => dispatch({type: 'SWITCH_PAGE'})
-//     }
-// }
-
 const mapDispatchToProps = (dispatch) => {
     return {
         loadMovies: (url, options) => dispatch(A.fetchMovies(url, options)),
-        switchPage: () => dispatch(A.switchPage())
+        switchPage: (currentPage) => dispatch(A.switchPage(currentPage))
     }
 }
 

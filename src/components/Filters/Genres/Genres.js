@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import { getGenres } from '../../../store/reducers';
 import * as A from './redux/actions';
 import * as S from './redux/selectors';
 
@@ -20,6 +19,7 @@ const Genres = (props) => {
 
     const handleCheckbox = (e) => {
         let target = e.target
+
         toggleCheck(target)
         setIsChecked(() => isChecked.map(item =>
             item.id === target.id
@@ -43,26 +43,11 @@ const Genres = (props) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         genres: getGenres(state),
-//     }
-// }
-
 const mapStateToProps = (state) => {
     return {
         genres: S.getGenres(state),
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         checkGenres: (targetItem) => dispatch({
-//             type: 'CHECK_GENRES',
-//             payload: targetItem
-//         })
-//     }
-// }
 
 const mapDispatchToProps = (dispatch) => {
     return {
