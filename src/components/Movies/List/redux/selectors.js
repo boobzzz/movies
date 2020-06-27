@@ -1,58 +1,27 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 
-const getSortBy = (state) => state.selects.sort_by
-const getRelDate = (state) => state.selects.primary_release_year
-const getWithGenres = (state) => state.genres.with_genres
-const getPage = (state) => state.movies.page
+const getPage = (state) => state.filters.page
+const getSortByFilter = (state) => state.filters.sort_by
+const getRelYearFilter = (state) => state.filters.primary_release_year
+const getWithGenresFilter = (state) => state.filters.with_genres
+const getMovies = (state) => state.movies.movies
 
-let currentPage
-let currentSort
-let currentYear
-let currentGenres
-const getPageSelector = createSelector(
-    getPage, getSortBy, getRelDate, getWithGenres,
-    (page, sort_by, primary_release_year, with_genres) => {
-        let previousSort = currentSort
-        let previousYear = currentYear
-        let previousGenres = currentGenres
+const getGenresSelector = createSelector(getWithGenresFilter, (with_genres) => {
+    const isChecked = (x) => x === true
+    with_genres = R.filter(isChecked, with_genres)
 
-        currentPage = page
-        currentSort = sort_by
-        currentYear = primary_release_year
-        currentGenres = with_genres
-
-        if (previousSort !== currentSort
-            || previousYear !== currentYear
-            || previousGenres !== currentGenres) {
-            currentPage = 1
-        }
-
-    return currentPage
+    return R.keys(with_genres).join(',')
 })
 
-const getCleared = (state) => state.cleared.cleared
-
-let currentFilters
 export const getFiltersSelector = createSelector(
-    getPageSelector, getSortBy, getRelDate, getWithGenres, getCleared,
-    (currentPage, sort_by, primary_release_year, with_genres, cleared) => {
+    getPage, getSortByFilter, getRelYearFilter, getGenresSelector,
+    (page, sort_by, primary_release_year, with_genres) => {
         let filters = {
-            page: currentPage,
+            page: page,
             sort_by: sort_by,
             primary_release_year: primary_release_year,
             with_genres: with_genres
-        }
-        let previousFilters = currentFilters
-        currentFilters = cleared
-
-        if (currentFilters !== previousFilters) {
-            filters = {
-                page: 1,
-                sort_by: 'popularity.desc',
-                primary_release_year: null,
-                with_genres: ''
-            }
         }
 
         return filters
@@ -60,15 +29,11 @@ export const getFiltersSelector = createSelector(
 )
 
 let displayMovies = []
-const getMovies = (state) => state.movies.movies
-export const getMoviesSelector = createSelector(
-    getMovies, getPageSelector,
-    (movies, page) => {
-        if (page === 1) displayMovies = []
-        displayMovies = [...displayMovies, ...movies]
+export const getMoviesSelector = createSelector(getMovies, getPage, (movies, page) => {
+    if (page === 1) displayMovies = []
+    displayMovies = [...displayMovies, ...movies]
 
-        return R.uniq(displayMovies)
-    }
-)
+    return R.uniq(displayMovies)
+})
 
 export const getIsLoading = (state) => state.movies.isLoadingMovies

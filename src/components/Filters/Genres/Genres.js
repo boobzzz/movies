@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-// import { getGenres } from '../../../store/reducers';
 import * as A from './redux/actions';
 import * as S from './redux/selectors';
 
@@ -12,20 +11,18 @@ const Genres = (props) => {
     const [ isChecked, setIsChecked ] = useState([])
 
     useEffect(() => {
-        setIsChecked(() => genres.map(genre => (
-                {id: genre.id + '', name: genre.name, checked: false}
-            ))
-        )
-    }, [genres, cleared])
+        setIsChecked(genres)
+    }, [cleared, genres])
 
-    const handleCheckbox = (e) => {
+    const changeHandler = (e) => {
         let target = e.target
-        toggleCheck(target)
-        setIsChecked(() => isChecked.map(item =>
-            item.id === target.id
-            ? {...item, checked: !item.checked}
-            : item
+
+        setIsChecked(() => isChecked.map(genre =>
+            genre.id === target.id
+            ? {...genre, checked: !genre.checked}
+            : genre
         ))
+        toggleCheck(target)
     }
 
     return (
@@ -35,7 +32,7 @@ const Genres = (props) => {
                     <Checkbox
                         id={genre.id}
                         name={genre.name}
-                        changed={handleCheckbox}
+                        changed={changeHandler}
                         checked={genre.checked} />
                 </li>
             )}
@@ -43,26 +40,11 @@ const Genres = (props) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         genres: getGenres(state),
-//     }
-// }
-
 const mapStateToProps = (state) => {
     return {
-        genres: S.getGenres(state),
+        genres: S.getGenresSelector(state),
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         checkGenres: (targetItem) => dispatch({
-//             type: 'CHECK_GENRES',
-//             payload: targetItem
-//         })
-//     }
-// }
 
 const mapDispatchToProps = (dispatch) => {
     return {
