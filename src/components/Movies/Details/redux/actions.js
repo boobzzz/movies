@@ -1,5 +1,5 @@
 import * as T from './types';
-import fetchApiData from '../../../../../store/rootAction';
+import fetchApiData from '../../../../store/rootAction';
 
 export const fetchMovieDetails = (url, options) => {
     return fetchApiData(url, options, T.FETCH_DETAILS)

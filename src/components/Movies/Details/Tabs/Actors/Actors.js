@@ -1,9 +1,9 @@
 import React from 'react';
-import withMovieDetails from '../../../../../HOC/withMovieDetails';
-import * as C from '../../../../../../utils/api/constants';
+import withMovieDetails from '../../../../HOC/withMovieDetails';
+import * as C from '../../../../../utils/api/constants';
 
 import classes from './Actors.module.css';
-import notFound from '../../../../../../assets/images/image_not_found.png';
+import notFound from '../../../../../assets/images/image_not_found.png';
 
 const Actors = (props) => {
     const { cast } = props.movie

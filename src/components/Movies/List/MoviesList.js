@@ -5,7 +5,7 @@ import * as S from './redux/selectors';
 import * as C from '../../../utils/api/constants';
 import queryString from 'query-string';
 
-import MovieCard from '../Movie/Card/MovieCard';
+import MoviesCard from '../Card/MoviesCard';
 import Button from '../../UI/Button/Button';
 import notFound from '../../../assets/images/image_not_found.png';
 import Loader from '../../UI/Loader/Loader';
@@ -34,7 +34,7 @@ const MoviesList = (props) => {
         : <div className={classes.MoviesList}>
             <div className="row">
                 {movies.map(movie =>
-                    <MovieCard
+                    <MoviesCard
                         key={movie.id}
                         id={movie.id}
                         poster={movie.poster_path !== null

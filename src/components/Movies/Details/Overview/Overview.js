@@ -1,6 +1,6 @@
 import React from 'react';
-import * as C from '../../../../../utils/api/constants';
-import withMovieDetails from '../../../../HOC/withMovieDetails';
+import * as C from '../../../../utils/api/constants';
+import withMovieDetails from '../../../HOC/withMovieDetails';
 
 import classes from './Overview.module.css';
 

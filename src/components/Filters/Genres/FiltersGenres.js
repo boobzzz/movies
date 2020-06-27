@@ -4,9 +4,9 @@ import * as A from './redux/actions';
 import * as S from './redux/selectors';
 
 import Checkbox from '../../UI/Checkbox/Checkbox';
-import classes from './Genres.module.css';
+import classes from './FiltersGenres.module.css';
 
-const Genres = (props) => {
+const FiltersGenres = (props) => {
     const { genres, toggleCheck, cleared } = props;
     const [ isChecked, setIsChecked ] = useState([])
 
@@ -52,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Genres);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersGenres);

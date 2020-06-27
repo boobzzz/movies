@@ -4,8 +4,8 @@ import * as A from './redux/actions';
 import * as C from '../../../utils/api/constants';
 
 import Button from '../../UI/Button/Button';
-import Selects from '../Selects/Selects';
-import Genres from '../Genres/Genres';
+import FiltersSelects from '../Selects/FiltersSelects';
+import FiltersGenres from '../Genres/FiltersGenres';
 import classes from './FiltersForm.module.css';
 
 const url = `${C.API_ENDPOINT}/genre/movie/list`
@@ -28,8 +28,8 @@ const FiltersForm = (props) => {
     return (
         <form className={classes.FiltersBox}>
             <Button path="/" title="CLEAR ALL FILTERS" clicked={clearAllFilters} />
-            <Selects cleared={filtersCleared} />
-            <Genres cleared={filtersCleared} />
+            <FiltersSelects cleared={filtersCleared} />
+            <FiltersGenres cleared={filtersCleared} />
         </form>
     )
 }

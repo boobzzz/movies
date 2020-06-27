@@ -1,5 +1,5 @@
 import React from 'react';
-import withMovieDetails from '../../../../../HOC/withMovieDetails';
+import withMovieDetails from '../../../../HOC/withMovieDetails';
 
 import classes from './Details.module.css';
 

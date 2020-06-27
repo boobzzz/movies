@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Button from '../../../UI/Button/Button';
-import classes from './MovieCard.module.css';
+import Button from '../../UI/Button/Button';
+import classes from './MoviesCard.module.css';
 
-const MovieCard = (props) => {
+const MoviesCard = (props) => {
     const { id, title, poster } = props
     const path = `/movie/${id}/details`
 
@@ -34,4 +34,4 @@ const MovieCard = (props) => {
     )
 }
 
-export default MovieCard;
+export default MoviesCard;

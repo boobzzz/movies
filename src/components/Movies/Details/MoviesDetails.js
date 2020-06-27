@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-// import { getIsLoading, getDetails, getVideos, getCast } from '../../../../store/reducers';
 import { connect } from 'react-redux';
-import { DetailsContext } from '../../../../contexts/DetailsContext';
-// import * as A from '../../../../store/actions';
+import { DetailsContext } from '../../../contexts/DetailsContext';
 import * as A from './redux/actions';
 import * as S from './redux/selectors';
-import * as C from '../../../../utils/api/constants';
+import * as C from '../../../utils/api/constants';
 
-import Loader from '../../../UI/Loader/Loader';
+import Loader from '../../UI/Loader/Loader';
 import Overview from './Overview/Overview';
 import Tabs from './Tabs/Tabs';
 
-import classes from './MovieDetails.module.css';
+import classes from './MoviesDetails.module.css';
 
-const MovieDetails = (props) => {
+const MoviesDetails = (props) => {
     const { details, videos, cast, loading, loadDetails, loadVideos, loadCast } = props
     const { id } = useParams()
     const detailsUrl = `${C.API_ENDPOINT}/movie/${id}`
@@ -60,15 +58,6 @@ const MovieDetails = (props) => {
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         details: getDetails(state),
-//         videos: getVideos(state),
-//         cast: getCast(state),
-//         loading: getIsLoading(state)
-//     }
-// }
-
 const mapStateToProps = (state) => {
     return {
         details: S.getDetails(state),
@@ -86,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesDetails);

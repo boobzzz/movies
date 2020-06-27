@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MovieDetails from '../../../Movies/Movie/Details/MovieDetails';
+import MovieDetails from '../../../Movies/Details/MoviesDetails';
 
 const MainDetails = () => <MovieDetails />
 

@@ -5,7 +5,7 @@ import * as T from './redux/types';
 import * as A from './redux/actions';
 
 import Select from '../../UI/Select/Select';
-import './Selects.module.css';
+import './FiltersSelects.module.css';
 
 const optionsSortBy = {
     title: 'Sort By:',
@@ -29,7 +29,7 @@ const optionsReleaseDate = {
 }
 const selects = [optionsSortBy, optionsReleaseDate]
 
-const Selects = (props) => {
+const FiltersSelects = (props) => {
     const { getSelects, cleared } = props
     const [ isSelected, setIsSelected ] = useState([])
 
@@ -74,4 +74,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Selects);
+export default connect(null, mapDispatchToProps)(FiltersSelects);

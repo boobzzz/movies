@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import NavTabs from '../../../../UI/NavTabs/NavTabs';
+import NavTabs from '../../../UI/NavTabs/NavTabs';
 import Details from './Details/Details';
 import Videos from './Videos/Videos';
 import Actors from './Actors/Actors';
