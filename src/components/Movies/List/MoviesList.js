@@ -20,7 +20,8 @@ const MoviesList = (props) => {
     const options = C.OPTIONS
 
     const loadMore = () => {
-        switchPage()
+        let { page } = filters
+        switchPage(page)
     }
 
     useEffect(() => {
@@ -61,7 +62,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         loadMovies: (url, options) => dispatch(A.fetchMovies(url, options)),
-        switchPage: () => dispatch(A.switchPage())
+        switchPage: (currentPage) => dispatch(A.switchPage(currentPage))
     }
 }
 
