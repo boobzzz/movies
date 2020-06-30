@@ -1,6 +1,6 @@
 {
   "name": "moveis",
-  "version": "0.1.0",
+  "version": "1.22.4",
   "private": true,
   "dependencies": {
     "@bit/lodash.lodash.merge": "^4.17.11",
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "add": "^2.0.6",
     "bootstrap": "^4.5.0",
+    "formik": "^2.1.4",
     "node-sass": "^4.13.1",
     "query-string": "^6.12.1",
     "ramda": "^0.27.0",
@@ -28,7 +29,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "why-did-you-update": "^1.0.8",
-    "yarn": "^1.21.1"
+    "yarn": "^1.21.1",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",
