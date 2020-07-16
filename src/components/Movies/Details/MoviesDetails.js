@@ -9,16 +9,20 @@ import * as C from '../../../utils/api/constants';
 import Loader from '../../UI/Loader/Loader';
 import Overview from './Overview/Overview';
 import Tabs from './Tabs/Tabs';
-
 import classes from './MoviesDetails.module.css';
 
+const options = {
+    headers: {
+        'Authorization': `Bearer ${C.API_KEY_V4}`
+    }
+}
+
 const MoviesDetails = (props) => {
-    const { details, videos, cast, loading, loadDetails, loadVideos, loadCast } = props
+    const { loading, details, videos, cast, loadDetails, loadVideos, loadCast } = props
     const { id } = useParams()
     const detailsUrl = `${C.API_ENDPOINT}/movie/${id}`
     const videosUrl = `${detailsUrl}/videos`
     const creditsUrl = `${detailsUrl}/credits`
-    const options = C.OPTIONS
     const background = {
         backgroundImage: `url(${C.GET_IMAGE}${details.backdrop_path})`
     }
@@ -27,30 +31,24 @@ const MoviesDetails = (props) => {
         loadDetails(detailsUrl, options)
         loadVideos(videosUrl, options)
         loadCast(creditsUrl, options)
-    }, [
-        detailsUrl,
-        videosUrl,
-        creditsUrl,
-        options,
-        loadDetails,
-        loadVideos,
-        loadCast
-    ])
-    const loaded = true
+    }, [])
+
     return (
         <DetailsContext.Provider value={{
+            loading: loading,
             details: details,
             videos: videos,
             cast: cast,
-            loading: loading
         }}>
             {loading
-            ? <Loader size="20" color="#bd2130" loading={loaded} />
-            : <div>
-                <section className={`row ${classes.DescBox}`} style={background}>
+            ? <Loader size="20px" color="#bd2130" loading={loading} />
+            : <div className="container-fluid">
+                <section
+                    className={`row justify-content-center ${classes.DescBox}`}
+                    style={background}>
                     <Overview />
                 </section>
-                <section className={`row ${classes.Content}`}>
+                <section className="row justify-content-center">
                     <Tabs />
                 </section>
             </div>}
@@ -60,10 +58,10 @@ const MoviesDetails = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        loading: S.getIsLoading(state),
         details: S.getDetails(state),
         videos: S.getVideos(state),
-        cast: S.getCast(state),
-        loading: S.getIsLoading(state)
+        cast: S.getCast(state)
     }
 }
 

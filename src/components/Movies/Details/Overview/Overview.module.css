@@ -1,11 +1,8 @@
 .Desc {
     display: flex;
 }
-.Poster {
-    flex: 0 0 34%;
-}
     .Poster img {
-        height: 500px;
+        object-fit: cover;
     }
 .Overview {
     flex: 0 0 66%;
@@ -27,6 +24,25 @@
         font-size: 40px;
         color: #bd2130;
     }
+.Icons {
+    display: flex;
+    justify-content: flex-start;
+}
+.Icons div+div,
+.Icons div+div+div {
+    margin-left: 50px;
+}
+.Icons div:first-child {
+    width: 90px !important;
+    height: 90px !important;
+}
+.Icons div:first-child div {
+    font-size: 22px;
+}
+.Icons circle {
+    cx: 73;
+    cy: 47;
+}
     .Overview p {
         margin: 0;
         font-weight: 600;
@@ -34,3 +50,16 @@
         text-align: justify;
         color: #032541;
     }
+
+/* --------------------Media Queries-------------------- */
+@media (max-width: 850px) {
+    .Desc {
+        display: block;
+    }
+    .Poster {
+        display: none;
+    }
+    .Overview p {
+        margin-top: 20px;
+    }
+}

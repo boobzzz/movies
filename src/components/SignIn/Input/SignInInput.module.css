@@ -1,0 +1,11 @@
+.Input label {
+    text-transform: capitalize;
+}
+.Field {
+    width: 100%;
+    letter-spacing: 1px;
+}
+.ErrorMsg {
+    font-size: 15px;
+    color: #bd2130;
+}

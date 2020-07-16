@@ -1,45 +1,145 @@
-.MovieCard {
+.InnerCard {
     display: flex;
     margin-bottom: 20px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.MovieCard:hover {
+.InnerCard:hover {
     box-shadow: 0px 6px 12px 4px rgba(3, 37, 65, 0.6);
 }
 .Poster {
     flex: 0 0 50%;
 }
     .Poster img {
-        height: 298px;
+        width: 100%; height: 100%;
+        object-fit: cover;
     }
 .MovieInfo {
     flex: 0 0 50%;
     display: flex;
     flex-flow: column nowrap;
-    padding: 20px;
-    border: 1px solid rgba(3, 37, 65, 0.4);
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px inset rgba(3, 37, 65, 0.4);
 }
 .Icons {
-    flex: 0 0 17%;
-    /* background: lightgrey */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
-.Title {
-    flex: 0 0 70%;
-    /* background: lightgreen */
-}
-    .Title h6 {
+    .Icons div:first-child {
+        width: 66px !important;
+        height: 66px !important;
+    }
+    .Icons div:first-child div {
+        font-size: 14px;
+    }
+    .Icons circle {
+        cx: 62;
+        cy: 33;
+    }
+    .Title a {
         margin: 0;
         font-family: 'Permanent Marker', cursive;
         font-size: 20px;
+        line-height: 20px;
+        text-decoration: none;
         color: #bd2130;
     }
 .DetailsBtn {
-    flex: 0 0 13%;
     text-align: center;
-    /* background: lightgrey */
 }
     .DetailsBtn a {
         font-size: 16px;
         line-height: 32px;
         border: 1px solid rgba(3, 37, 65, 0.2);
     }
+
+/* --------------------Media Queries-------------------- */
+@media (min-width: 992px) and (max-width: 1199px),
+       (min-width: 576px) and (max-width: 767px),
+       (max-width: 460px) {
+    .OuterCard {
+        perspective: 1000px;
+    }
+    .InnerCard {
+        display: block;
+        position: relative;
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+    }
+    .OuterCard:hover .InnerCard {
+        transform: rotateY(180deg);
+    }
+    .Front, .Back {
+        backface-visibility: hidden;
+    }
+    .Back {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        transform: rotateY(180deg);
+    }
+}
+@media (max-width: 1199px) {
+    .Title a {
+        font-size: 34px;
+        line-height: 34px;
+    }
+    .DetailsBtn a {
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+@media (max-width: 991px) {
+    .MovieInfo {
+        padding: 20px;
+    }
+    .Title a {
+        font-size: 28px;
+        line-height: 28px;
+    }
+    .DetailsBtn a {
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+@media (max-width: 767px) {
+    .Title a {
+        font-size: 34px;
+        line-height: 34px;
+    }
+    .DetailsBtn a {
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+@media (max-width: 575px) {
+    .Title a {
+        font-size: 24px;
+        line-height: 24px;
+    }
+    .DetailsBtn a {
+        font-size: 16px;
+        line-height: 32px;
+    }
+}
+@media (max-width: 460px) {
+    .Title a {
+        font-size: 34px;
+        line-height: 34px;
+    }
+    .DetailsBtn a {
+        font-size: 20px;
+        line-height: 40px;
+    }
+}
+@media (max-width: 320px) {
+    .Title a {
+        font-size: 24px;
+        line-height: 24px;
+    }
+    .DetailsBtn a {
+        font-size: 16px;
+        line-height: 32px;
+    }
+}

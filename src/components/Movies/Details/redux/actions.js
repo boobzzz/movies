@@ -1,14 +1,14 @@
 import * as T from './types';
-import fetchApiData from '../../../../store/rootAction';
+import * as R from '../../../../store/rootActions';
 
 export const fetchMovieDetails = (url, options) => {
-    return fetchApiData(url, options, T.FETCH_DETAILS)
+    return R.fetchApiData(url, options, T.FETCH_DETAILS)
 }
 
 export const fetchMovieVideos = (url, options) => {
-    return fetchApiData(url, options, T.FETCH_VIDEOS)
+    return R.fetchApiData(url, options, T.FETCH_VIDEOS)
 }
 
 export const fetchMovieCast = (url, options) => {
-    return fetchApiData(url, options, T.FETCH_CAST)
+    return R.fetchApiData(url, options, T.FETCH_CAST)
 }
