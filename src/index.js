@@ -7,11 +7,6 @@ import store from './store/store';
 import './index.scss';
 import App from './App';
 
-// if (process.env.NODE_ENV !== 'production') {
-//   const {whyDidYouUpdate} = require('why-did-you-update');
-//   whyDidYouUpdate(React);
-// }
-
 ReactDOM.render(
     <Provider store={store}>
         <App />

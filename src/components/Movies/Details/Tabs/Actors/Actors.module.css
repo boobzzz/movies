@@ -1,12 +1,13 @@
 .ActorsBox {
-    padding: 20px 0 50px 0;
+    padding: 20px 15px 50px 15px;
 }
 .Actor {
-    position: relative;
     padding: 0;
 }
     .Actor img {
-        height: 388px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 .ActorInfo {
     position: absolute;
@@ -20,9 +21,9 @@
         display: inline-block;
         width: 100%;
         font-weight: 600;
-        font-size: 26px;
+        font-size: 24px;
         color: #fff;
     }
     .ActorInfo span+span {
-        font-size: 18px;
+        font-size: 14px;
     }

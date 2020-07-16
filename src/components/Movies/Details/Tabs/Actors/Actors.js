@@ -2,16 +2,19 @@ import React from 'react';
 import withMovieDetails from '../../../../HOC/withMovieDetails';
 import * as C from '../../../../../utils/api/constants';
 
+import Loader from '../../../../UI/Loader/Loader';
 import classes from './Actors.module.css';
 import notFound from '../../../../../assets/images/image_not_found.png';
 
 const Actors = (props) => {
-    const { cast } = props.movie
+    const { loading, cast } = props.movie
 
     return (
         <div className={`row ${classes.ActorsBox}`}>
-            {cast.slice(0, 28).map(actor =>
-                <div key={actor.id} className={`col-3 ${classes.Actor}`}>
+            {loading
+            ? <Loader size="20px" color="#bd2130" loading={loading} />
+            : cast.slice(0, 28).map(actor =>
+                <div key={actor.id} className={`col-lg-3 col-md-4 col-sm-6 ${classes.Actor}`}>
                     <img src={
                         actor.profile_path !== null
                         ? `${C.GET_IMAGE}${actor.profile_path}`

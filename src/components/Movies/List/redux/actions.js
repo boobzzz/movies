@@ -1,8 +1,8 @@
 import * as T from './types';
-import fetchApiData from '../../../../store/rootAction';
+import * as R from '../../../../store/rootActions';
 
 export const fetchMovies = (url, options) => {
-    return fetchApiData(url, options, T.FETCH_MOVIES)
+    return R.fetchApiData(url, options, T.FETCH_MOVIES)
 }
 
 export const switchPage = (currentPage) => {

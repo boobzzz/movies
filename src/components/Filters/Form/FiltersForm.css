@@ -16,3 +16,25 @@
     .FiltersBox a {
         border: 1px solid rgba(3, 37, 65, 0.2);
     }
+.Collapse {
+    display: none;
+    margin-top: 20px;
+}
+
+/* --------------------Media Queries-------------------- */
+@media (min-width: 576px) {
+    .collapse:not(.show) {
+        display: block;
+    }
+}
+@media (max-width: 575px) {
+    .Collapse {
+        display: block;
+    }
+    .collapse:not(.show) {
+        display: none;
+    }
+    .FiltersBox {
+        margin-bottom: 0px;
+    }
+}

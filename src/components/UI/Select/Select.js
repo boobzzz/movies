@@ -5,11 +5,10 @@ const Select = (props) => {
 
     return (
         <label>{name}
-            <select
-                name={name}
-                onChange={changed}
-                value={selectValue}>
-                <option value="default" disabled>Select option...</option>
+            <select name={name} onChange={changed} value={selectValue}>
+                <option value="default" disabled>
+                    Select option...
+                </option>
                 {options.map(option =>
                     <option key={option.value} value={option.value}>
                         {option.name}

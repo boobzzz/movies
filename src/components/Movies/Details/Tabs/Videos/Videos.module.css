@@ -4,3 +4,7 @@
 .Frame {
     margin-bottom: 10px;
 }
+    .Frame iframe {
+        width: 100%;
+        height: 100%;
+    }

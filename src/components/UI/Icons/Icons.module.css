@@ -1,0 +1,21 @@
+.Icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+.Outlined,
+.Filled {
+    stroke-width: 1;
+    stroke: #ccd3d9;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.Outlined:hover,
+.Filled:hover {
+    stroke: #032541;
+}
+.Filled {
+    stroke: #5d9cec;
+    fill: #5d9cec;
+}

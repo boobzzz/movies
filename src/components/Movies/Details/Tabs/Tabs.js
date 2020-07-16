@@ -5,18 +5,17 @@ import NavTabs from '../../../UI/NavTabs/NavTabs';
 import Details from './Details/Details';
 import Videos from './Videos/Videos';
 import Actors from './Actors/Actors';
-
 import classes from './Tabs.module.css';
 
-const Tabs = (props) => {
-    const tabs = [
-        {tabName: 'Details', path: 'details'},
-        {tabName: 'Videos', path: 'videos'},
-        {tabName: 'Actors', path: 'actors'}
-    ]
+const tabs = [
+    {tabName: 'Details', path: 'details'},
+    {tabName: 'Videos', path: 'videos'},
+    {tabName: 'Actors', path: 'actors'}
+]
 
+const Tabs = (props) => {
     return (
-        <div className={`col-8 ${classes.Tabs}`}>
+        <div className={`col-xl-8 col-lg-10 col-md-12 col-sm-12 ${classes.Tabs}`}>
             <NavTabs tabs={tabs} />
             <div className="tab-content">
                 <Switch>

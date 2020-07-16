@@ -14,3 +14,12 @@ body {
 .nav-link {
     line-height: 20px;
 }
+.nav-tabs .nav-link {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:hover {
+    font-weight: 600;
+    color: #bd2130;
+}

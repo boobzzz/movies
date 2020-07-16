@@ -8,11 +8,7 @@ const Loader = (props) => {
 
     return (
         <div className={classes.Loader}>
-            <GridLoader
-                size={size}
-                color={color}
-                loading={loading}
-             />
+            <GridLoader size={size} color={color} loading={loading} />
         </div>
     )
 }
