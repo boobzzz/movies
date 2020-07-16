@@ -2,6 +2,7 @@
   "name": "moveis",
   "version": "1.22.4",
   "private": true,
+  "homepage": "https://boobzzz.github.io/movies",
   "dependencies": {
     "@bit/lodash.lodash.merge": "^4.17.11",
     "@bit/ramda.ramda.keys": "^0.26.1",
@@ -13,6 +14,7 @@
     "add": "^2.0.6",
     "bootstrap": "^4.5.0",
     "formik": "^2.1.4",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.13.1",
     "query-string": "^6.12.1",
     "ramda": "^0.27.0",
@@ -38,7 +40,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

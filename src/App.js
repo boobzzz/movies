@@ -8,7 +8,7 @@ import ButtonToTop from './components/UI/ButtonToTop/ButtonToTop';
 
 export default function App() {
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Header />
             <Main />
             <Footer />
