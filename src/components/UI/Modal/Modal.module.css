@@ -1,0 +1,32 @@
+.Modal div {
+    border-radius: 0;
+}
+.Header {
+    margin-top: 10px;
+    padding: 10px 25px;
+    border-bottom: none;
+}
+    .Header h5 {
+        font-weight: 600;
+        font-size: 26px;
+        color: #0056b3;
+    }
+    .CloseBtn {
+        width: 44px;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 40px;
+        border: none;
+        background: #fff;
+        color: #032541;
+        opacity: 0.5;
+        transition: all 0.3s;
+    }
+    .CloseBtn:hover {
+        background: #bd2130;
+        opacity: 1;
+        color: #fff;
+    }
+    .CloseBtn:focus {
+        outline: none;
+    }

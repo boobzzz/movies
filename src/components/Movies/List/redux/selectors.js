@@ -1,6 +1,9 @@
 import * as R from 'ramda';
 import { createSelector } from 'reselect';
 
+export const getIsLoading = (state) => state.movies.isLoadingMovies
+export const getDetails = (state) => state.details.details
+
 const getPage = (state) => state.filters.page
 const getSortByFilter = (state) => state.filters.sort_by
 const getRelYearFilter = (state) => state.filters.primary_release_year
@@ -35,5 +38,3 @@ export const getMoviesSelector = createSelector(getMovies, getPage, (movies, pag
 
     return R.uniq(displayMovies)
 })
-
-export const getIsLoading = (state) => state.movies.isLoadingMovies

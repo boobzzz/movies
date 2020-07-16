@@ -1,10 +1,11 @@
 import React from 'react';
 import withMovieDetails from '../../../../HOC/withMovieDetails';
 
+import Loader from '../../../../UI/Loader/Loader';
 import classes from './Details.module.css';
 
 const Details = (props) => {
-    const { details } = props.movie
+    const { loading, details } = props.movie
 
     const movieDetails = [
         {
@@ -48,7 +49,9 @@ const Details = (props) => {
     return (
         <table>
             <tbody>
-                {movieDetails.map(item =>
+                {loading
+                ? <Loader size="20px" color="#bd2130" loading={loading} />
+                : movieDetails.map(item =>
                     <tr key={item.name} className={classes.TableRow}>
                         <th>{item.name}</th>
                         <td>

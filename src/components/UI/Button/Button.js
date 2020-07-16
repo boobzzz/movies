@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import classes from './Button.module.css';
 
 const Button = (props) => {
-    const { path, title, clicked } = props;
+    const { classname, path, title, clicked } = props;
 
     return (
-        <div className={classes.Button}>
-            <Link to={path} onClick={clicked}>
+        <div className={`${classes.Button} ${classname}`}>
+            <NavLink to={path} onClick={clicked}>
                 {title}
-            </Link>
+            </NavLink>
         </div>
     )
 }

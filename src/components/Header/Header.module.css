@@ -1,7 +1,7 @@
 header {
     background: #032541;
 }
-    header img {
+    header [alt="logo"] {
         height: 24px;
     }
     header a {

@@ -1,7 +1,7 @@
 import * as T from './types';
 
 const initialState = {
-    isLoadingDetails: false,
+    isLoadingDetails: true,
     details: {},
     videos: [],
     cast: []

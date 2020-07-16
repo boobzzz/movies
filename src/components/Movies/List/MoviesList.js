@@ -7,17 +7,22 @@ import queryString from 'query-string';
 
 import MoviesCard from '../Card/MoviesCard';
 import Button from '../../UI/Button/Button';
-import notFound from '../../../assets/images/image_not_found.png';
 import Loader from '../../UI/Loader/Loader';
 import classes from './MoviesList.module.css';
 
+const endpoint = C.API_ENDPOINT
+const options = {
+    headers: {
+        'Authorization': `Bearer ${C.API_KEY_V4}`
+    }
+}
+
 const MoviesList = (props) => {
-    const { filters, movies, loading, loadMovies, switchPage } = props
+    const { loading, filters, movies, loadMovies, switchPage } = props
     let queryParams = filters
-    let url = `${C.API_ENDPOINT}/discover/movie?${
+    let url = `${endpoint}/discover/movie?${
         queryString.stringify(queryParams)
     }`
-    const options = C.OPTIONS
 
     const loadMore = () => {
         let { page } = filters
@@ -26,36 +31,32 @@ const MoviesList = (props) => {
 
     useEffect(() => {
         loadMovies(url, options)
-    }, [loadMovies, url, options])
+    }, [loadMovies, url])
 
     return (
         loading
-        ? <Loader size="20" color="#bd2130" loading={loading} />
+        ? <Loader size="20px" color="#bd2130" loading={loading} />
         : <div className={classes.MoviesList}>
-            <div className="row">
+            <div className="row justify-content-between">
                 {movies.map(movie =>
-                    <MoviesCard
-                        key={movie.id}
-                        id={movie.id}
-                        poster={movie.poster_path !== null
-                            ? `${C.GET_IMAGE}${movie.poster_path}`
-                            : notFound}
-                        title={movie.title} />
+                    <MoviesCard key={movie.id} movie={movie} />
                 )}
             </div>
-            <Button
-                path="/"
-                title="load 20 more"
-                clicked={loadMore} />
+            <div className={classes.ButtonBox}>
+                <Button
+                    path="/"
+                    title="load 20 more"
+                    clicked={loadMore} />
+            </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        filters: S.getFiltersSelector(state),
-        movies: S.getMoviesSelector(state),
         loading: S.getIsLoading(state),
+        filters: S.getFiltersSelector(state),
+        movies: S.getMoviesSelector(state)
     }
 }
 

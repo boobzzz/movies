@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import MainList from './MainRoutes/MainList/MainList';
-import MainDetails from './MainRoutes/MainDetails/MainDetails';
+import MainList from './MainRoutes/MainList';
+import MainDetails from './MainRoutes/MainDetails';
 
 const Main = (props) => {
     return (
