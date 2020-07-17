@@ -8,7 +8,7 @@ import ButtonToTop from './components/UI/ButtonToTop/ButtonToTop';
 
 export default function App() {
     return (
-        <Router basename="https://boobzzz.github.io/movies">
+        <Router basename="/movies">
             <Header />
             <Main />
             <Footer />
