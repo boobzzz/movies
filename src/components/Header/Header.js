@@ -32,7 +32,7 @@ const Header = (props) => {
         <>
             <header>
                 <nav className="navbar">
-                    <a href="/" className="navbar-brand">
+                    <a href="/movies" className="navbar-brand">
                         <img src={logo} alt="logo"/>
                     </a>
                     <ul className="navbar-nav">
