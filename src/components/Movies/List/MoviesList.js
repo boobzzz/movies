@@ -44,7 +44,7 @@ const MoviesList = (props) => {
             </div>
             <div className={classes.ButtonBox}>
                 <Button
-                    path={void(0)}
+                    path="#"
                     title="load 20 more"
                     clicked={loadMore} />
             </div>
