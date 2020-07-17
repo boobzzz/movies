@@ -6,7 +6,7 @@ import './Footer.module.css';
 const Footer = (props) => {
     return (
         <footer>
-            <a href="/">
+            <a href="/movies">
                 <img src={logo} alt=""/>
             </a>
         </footer>
