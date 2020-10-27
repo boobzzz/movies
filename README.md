@@ -1,3 +1,5 @@
+![Movies DB](./public/images/movies.png)
+
 # MovieDB
 
 MovieDB is an application that interacts with TMDB movie data base
