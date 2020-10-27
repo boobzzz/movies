@@ -1,4 +1,4 @@
-![Movies DB](./public/images/movies.png)
+![Movies DB](./public/images/movies.jpg)
 
 # MovieDB
 
